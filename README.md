@@ -44,7 +44,7 @@ graph LR
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourrepo/rate-limiter.git
+   git clone repo-name
    ```
 2. Configure Redis in `application.properties`:
    ```properties
