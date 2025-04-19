@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
-public class ApiController {
+public class RateLimitController {
 
     @RateLimit(key = "user", limit = 5, windowInSeconds = 10)
     @GetMapping("/limited")
@@ -16,7 +16,7 @@ public class ApiController {
         return "This is a rate-limited endpoint";
     }
 
-    @RateLimit(limit = 5, windowInSeconds = 10) // 5 requests per 30 seconds per UUID
+    @RateLimit(limit = 5, windowInSeconds = 30) // 5 requests per 30 seconds per UUID
     @GetMapping("/rate-limit")
     public String handleRateLimitedRequest(@RequestParam String id) {
         return "Request processed for UUID: " + id;

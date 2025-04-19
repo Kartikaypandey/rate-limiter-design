@@ -1,5 +1,6 @@
 package com.example.rate_limiter.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -7,6 +8,7 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 @Service
+@Slf4j
 public class RateLimiterService {
 
     private final RedisTemplate<String, Object> redisTemplate;
@@ -16,6 +18,8 @@ public class RateLimiterService {
     }
 
     public boolean isAllowed(String key, int limit, int windowInSeconds) {
+
+        log.info("Key name is {}", key);
         long currentTime = System.currentTimeMillis() / 1000;
         long windowStart = currentTime - windowInSeconds;
 
